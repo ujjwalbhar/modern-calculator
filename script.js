@@ -9,12 +9,14 @@ class Calculator {
         this.currentOperand = '0';
         this.previousOperand = '';
         this.operation = undefined;
+        this.updateDisplay();
     }
 
     delete() {
         if (this.currentOperand === '0') return;
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
         if (this.currentOperand === '') this.currentOperand = '0';
+        this.updateDisplay();
     }
 
     appendNumber(number) {
@@ -24,6 +26,7 @@ class Calculator {
         } else {
             this.currentOperand = this.currentOperand.toString() + number.toString();
         }
+        this.updateDisplay();
     }
 
     chooseOperation(operation) {
@@ -34,6 +37,7 @@ class Calculator {
         this.operation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '0';
+        this.updateDisplay();
     }
 
     compute() {
@@ -60,6 +64,7 @@ class Calculator {
         this.currentOperand = computation;
         this.operation = undefined;
         this.previousOperand = '';
+        this.updateDisplay();
     }
 
     getDisplayNumber(number) {
@@ -92,4 +97,3 @@ class Calculator {
 const previousOperandElement = document.querySelector('.previous-operand');
 const currentOperandElement = document.querySelector('.current-operand');
 const calculator = new Calculator(previousOperandElement, currentOperandElement);
-calculator.updateDisplay();
